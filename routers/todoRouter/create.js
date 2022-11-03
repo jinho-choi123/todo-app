@@ -1,7 +1,7 @@
 import Todo from '../../utils/db/Todo.js'
 
 const create = (req, res) => {
-    const todo = req.body.todo
+    const todo = req.body
     console.log(todo)
 
     //create from database
