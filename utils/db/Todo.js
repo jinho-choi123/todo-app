@@ -7,10 +7,6 @@ const todoSchema = new Schema({
     status: Boolean,
 })
 
-todoSchema.virtual('todoId').get(function() {
-    return this._id;
-})
-
 const Todo = mongoose.model('Todo', todoSchema)
 
 export default Todo
