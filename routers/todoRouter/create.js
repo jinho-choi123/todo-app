@@ -11,8 +11,8 @@ const create = (req, res) => {
         status: false,
     })
     newTodo.save()
-        .then(() => {
-            res.send("todo create API")
+        .then((doc) => {
+            res.send({title: doc.title, _id: doc._id, date: doc.date, status: doc.status})
         })
         .catch((err) => {
             console.log(err)
