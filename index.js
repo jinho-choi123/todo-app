@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import todoRouter from "./routers/todoRouter/todoRouter.js";
 import connectDB from "./utils/db/connect.js";
 import * as dotenv from 'dotenv';
+import authRouter from "./routers/authRouter/authRouter.js";
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 //Routers
 app.use('/todo', todoRouter);
+app.use('/auth', authRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)
