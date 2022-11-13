@@ -4,9 +4,9 @@ const remove = (req, res) => {
     const todoId = req.query.todoid
     console.log(todoId)
     //delete from database
-    Todo.deleteOne({todoId: todoId})
+    Todo.deleteOne({_id: todoId})
         .then((doc) => {
-            res.send("todo delete API")
+            res.send(todoId)
         })
         .catch((err) => {
             console.log(err)
