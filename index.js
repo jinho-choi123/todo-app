@@ -4,16 +4,34 @@ import todoRouter from "./routers/todoRouter/todoRouter.js";
 import connectDB from "./utils/db/connect.js";
 import * as dotenv from 'dotenv';
 import authRouter from "./routers/authRouter/authRouter.js";
+import passport from './utils/passport.js'
+import pkg from 'body-parser'
+import session from 'express-session'
+import flash from 'connect-flash'
+
+const {urlencoded} = pkg;
 
 dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 connectDB()
+
+app.use(session({
+    name: 'todoAuth',
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: true,
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+
+
 
 app.get('/', (req, res) => {
     res.send("Server is running")
