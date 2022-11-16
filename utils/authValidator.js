@@ -21,8 +21,8 @@ const passwordValidator = ({password1, password2}) => {
     return new Promise((resolve, reject) => {
         if(password1 != password2) {
             reject("password doesnt match.")
-    } else if(password1.length < 10) {
-        reject('password is too short. At least 10 characters')
+    } else if(password1.length < 7) {
+        reject('password is too short. At least 7 characters')
     } else if(password1.length > 30) {
         reject('password is too long, Max 30 characters')
     } else {
