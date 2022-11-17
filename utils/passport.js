@@ -13,16 +13,17 @@ passport.use(new LocalStrategy(
     (username, password, done) => {
         User.findOne({username: username})
             .then((usr) => {
+                console.log(usr)
                 if (!usr) {
                     console.log('login failed!!')
                     return done(null, false, {msg: 'Incorrect Username or Password'})
                 }
-                crypto.pbkdf2(password, usr.salt, process.env.HASH_LOOP, process.env.CRPYTO_KEYLEN, process.env.HASH_METHOD, (err, key) => {
+                crypto.pbkdf2(password, usr.salt, parseInt(process.env.HASH_LOOP, 10), parseInt(process.env.CRYPTO_KEYLEN, 10), process.env.HASH_METHOD, (err, key) => {
                     if(err) {
                         console.log('login failed!!')
                         return done(err)
                     }
-                    if(!crypto.timingSafeEqual(usr.password, key)) {
+                    if(!crypto.timingSafeEqual(Buffer.from(usr.password, 'base64'), Buffer.from(key, 'base64'))) {
                         console.log('login failed!!')
                         return done(null, false, {msg: 'Incorrect Username or Password'})
                     }
@@ -44,8 +45,8 @@ passport.serializeUser((usr, cb) => {
 })
 
 passport.deserializeUser((usr, cb) => {
-    process.nextTick(() => {
-        return cb(null, usr)
+    User.findById(usr._id, (err, user) => {
+        cb(err, user)
     })
 })
 

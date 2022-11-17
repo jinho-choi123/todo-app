@@ -2,6 +2,8 @@ import crypto from 'crypto'
 import User from './db/User.js'
 
 const usernameValidator = ({username, password1, password2}) => {
+    console.log(username)
+    console.log(password1)
     return new Promise((resolve, reject) => {
         User.exists({username: username})
         .then((doc) => {
@@ -26,7 +28,7 @@ const passwordValidator = ({password1, password2}) => {
     } else if(password1.length > 30) {
         reject('password is too long, Max 30 characters')
     } else {
-        const randomSalt = crypto.randomBytes(50)
+        const randomSalt = crypto.randomBytes(50).toString('base64')
         resolve({password: password1, salt: randomSalt})
     }})
 }
@@ -37,7 +39,7 @@ const hasher = ({password, salt}) => {
             if(err) {
                 reject(err)
             }
-            resolve({hash: key, salt: salt})
+            resolve({hash: key.toString('base64'), salt: salt})
         })
     })
 }

@@ -1,7 +1,7 @@
 import User from '../../utils/db/User.js'
 import {passwordValidator, hasher, usernameValidator} from '../../utils/authValidator.js'
 
-const create = async (req, res) => {
+const signUp = (req, res) => {
     const username = req.body.username 
     const password1 = req.body.password1 
     const password2 = req.body.password2 
@@ -27,4 +27,4 @@ const create = async (req, res) => {
         })
 }
 
-export default create
+export default signUp
