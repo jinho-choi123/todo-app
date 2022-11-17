@@ -8,6 +8,7 @@ import passport from './utils/passport.js'
 import pkg from 'body-parser'
 import session from 'express-session'
 import flash from 'connect-flash'
+import MongoStore from "connect-mongo";
 
 const {urlencoded} = pkg;
 
@@ -25,7 +26,12 @@ app.use(session({
     name: 'todoAuth',
     secret: process.env.COOKIE_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.mongoDB_URI,
+        dbName: 'test',
+        ttl: 24*60*60,
+    }),
 }))
 app.use(passport.initialize())
 app.use(passport.session())
