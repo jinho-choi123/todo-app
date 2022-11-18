@@ -45,9 +45,13 @@ passport.serializeUser((usr, cb) => {
 })
 
 passport.deserializeUser((usr, cb) => {
-    User.findById(usr._id, (err, user) => {
-        cb(err, user)
-    })
+    User.findById({_id: usr.id})
+        .then((doc) => {
+            cb(null, doc)
+        })
+        .catch((err) => {
+            cb(err, false)
+        })
 })
 
 export default passport

@@ -14,6 +14,7 @@ const signUp = (req, res) => {
                 username: username, 
                 password: hash,
                 salt: salt,
+                todoList: [],
             })
 
             return newUser.save()

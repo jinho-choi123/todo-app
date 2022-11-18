@@ -1,10 +1,17 @@
 import Todo from '../../utils/db/Todo.js'
+import User from '../../utils/db/User.js'
 
 const show = (req, res) => {
-    //req.user 
-    //const userId = 1234 
-    //get all todos from db and send res
-    Todo.find({})
+    console.log("hello world!!!!!!!!!!!!")
+    console.log(req.user)
+    const userId = req.user.id
+    User.findOne({_id: userId})
+        .then((doc) => {
+            const todoIdList = doc.todoList;
+            return Todo.find({
+                _id: {$in: todoIdList}
+            })
+        })
         .then((docs) => {
             res.send(docs)
         })
