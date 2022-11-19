@@ -14,16 +14,13 @@ passport.use(new LocalStrategy(
         User.findOne({username: username})
             .then((usr) => {
                 if (!usr) {
-                    console.log("failed loggin in")
                     return done(null, false, {msg: 'Incorrect Username or Password'})
                 }
                 crypto.pbkdf2(password, usr.salt, parseInt(process.env.HASH_LOOP, 10), parseInt(process.env.CRYPTO_KEYLEN, 10), process.env.HASH_METHOD, (err, key) => {
                     if(err) {
-                        console.log("failed loggin in")
                         return done(err)
                     }
                     if(!crypto.timingSafeEqual(Buffer.from(usr.password, 'base64'), Buffer.from(key, 'base64'))) {
-                        console.log("failed loggin in")
                         return done(null, false, {msg: 'Incorrect Username or Password'})
                     }
                     return done(null, usr)
@@ -43,10 +40,8 @@ passport.serializeUser((usr, cb) => {
 })
 
 passport.deserializeUser((usr, cb) => {
-    console.log(usr)
     User.findOne({_id: usr.id})
         .then((doc) => {
-            console.log(doc)
             cb(null, doc)
         })
         .catch((err) => {

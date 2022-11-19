@@ -7,7 +7,7 @@ const create = (req, res) => {
 
     //create from database
     const newTodo = new Todo({
-        title: todo.title,
+        content: todo.content,
         date: todo.date,
         status: false,
     })
@@ -16,7 +16,7 @@ const create = (req, res) => {
             const todoId = doc._id;
             User.updateOne({_id: userId}, {$push: {todoList: todoId}})
                 .then((usr) => {
-                    res.send({title: doc.title, _id: doc._id, date: doc.date, status: doc.status})
+                    res.send({content: doc.content, _id: doc._id, date: doc.date, status: doc.status})
                 })
                 .catch((err) => {
                     console.log(err)
