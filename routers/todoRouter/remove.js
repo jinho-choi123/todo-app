@@ -4,7 +4,6 @@ import User from '../../utils/db/User.js'
 const remove = (req, res) => {
     const todoId = req.query.todoid
     const userId = req.user.id
-    console.log(todoId)
     //delete from database
     User.deleteOne({_id: userId}, {
             $pull: {todoList: todoId},

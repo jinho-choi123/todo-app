@@ -4,7 +4,6 @@ import User from '../../utils/db/User.js'
 const create = (req, res) => {
     const todo = req.body
     const userId = req.user.id
-    console.log(todo)
 
     //create from database
     const newTodo = new Todo({

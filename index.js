@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 
 //Routers
 app.use('/todo', todoRouter);
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)

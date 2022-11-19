@@ -2,8 +2,6 @@ import crypto from 'crypto'
 import User from './db/User.js'
 
 const usernameValidator = ({username, password1, password2}) => {
-    console.log(username)
-    console.log(password1)
     return new Promise((resolve, reject) => {
         User.exists({username: username})
         .then((doc) => {

@@ -1,15 +1,16 @@
-import passport from '../../utils/passport.js'
-
-const verifyMiddleware = async (req, res, next) => {
-    if(req.isAuthenticated()) {
-        next()
-    } else {
-        res.send({
-            status: false,
-            msg: 'please login first',
-            redirect: '/login'
-        })
-    }
+const verifyMiddleware = (req, res, next) => {
+    // console.log("got authorized req")
+    // console.log(req.user)
+    // if(req.isAuthenticated()) {
+    //     console.log("move to next!")
+    //     next()
+    // } else {
+    //     res.status(301).send({
+    //         status: false,
+    //         msg: 'need to authenticate'
+    //     })
+    // }
+    next()
 } 
 
 export default verifyMiddleware

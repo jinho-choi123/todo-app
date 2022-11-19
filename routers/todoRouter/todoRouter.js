@@ -9,6 +9,6 @@ const todoRouter = Router();
 todoRouter.post('/create', verifyMiddleware, create)
 todoRouter.delete('/remove',verifyMiddleware, remove)
 todoRouter.put('/update',verifyMiddleware, update)
-todoRouter.get('/show',verifyMiddleware, show)
+todoRouter.get('/show', verifyMiddleware, show)
 
 export default todoRouter
