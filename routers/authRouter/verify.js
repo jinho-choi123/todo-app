@@ -5,7 +5,7 @@ const verify = (req, res) => {
             msg: 'Is authenticated'
         })
     } else {
-        return res.send({
+        return res.status(301).send({
             status: false,
             msg: 'need to authenticate. verify api'
         })

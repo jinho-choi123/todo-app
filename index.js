@@ -25,7 +25,7 @@ connectDB()
 app.use(session({
     name: 'todoAuth',
     secret: process.env.COOKIE_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: process.env.mongoDB_URI,
