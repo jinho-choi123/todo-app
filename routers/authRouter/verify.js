@@ -7,7 +7,7 @@ const verify = (req, res) => {
     } else {
         return res.send({
             status: false,
-            msg: 'need to authenticate'
+            msg: 'need to authenticate. verify api'
         })
     }
 }

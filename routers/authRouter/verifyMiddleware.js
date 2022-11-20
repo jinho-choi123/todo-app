@@ -1,10 +1,10 @@
 const verifyMiddleware = (req, res, next) => {
     if(req.isAuthenticated()) {
-        next()
+        return next()
     } else {
-        res.status(301).send({
+        return res.send({
             status: false,
-            msg: 'need to authenticate'
+            msg: 'need to authenticate. verify middleware'
         })
     }
 } 
