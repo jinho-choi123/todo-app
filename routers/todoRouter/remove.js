@@ -5,7 +5,7 @@ const remove = (req, res) => {
     const todoId = req.query.todoid
     const userId = req.user.id
     //delete from database
-    User.deleteOne({_id: userId}, {
+    User.updateOne({_id: userId}, {
             $pull: {todoList: todoId},
         })
         .then((doc) => {
