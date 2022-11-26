@@ -1,16 +1,18 @@
 
-# File Storage Server
+# Todo App
 
-This project is simple file storing server made of Python Flask and sqlite3. If user uploads files, he/she will be given a link that can download uploaded contents.
+This project is simple todo app made of Express, Next, MongoDB. User can create/update/delete/check their Todos.
 
 
 
 
 ## Tech Stack
 
-**Client&Server:** Python Flask 
+**Client:** Next.js
 
-**DB:** SQLITE3
+**Server:** Express.js
+
+**DB:** MongoDB
 
 
 
